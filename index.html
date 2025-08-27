@@ -1,768 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Abdulla's Toolkit</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light dark" />
-  <style>
-    /* ------------- CSS VARIABLES ------------- */
-    :root{
-      --bg-1: #0f1026;
-      --bg-2: #1f1144;
-      --bg-3: #2b4961;
-      --card: rgba(255,255,255,0.12);
-      --card-stroke: rgba(255,255,255,0.25);
-      --text: #f6f7fb;
-      --muted: #cdd3e0;
-      --accent: #7ae0ff;
-      --accent-2:#b7ffcc;
-      --warning:#ffda79;
-      --danger:#ff7180;
-      --ok:#7dffb3;
-      --chip:#233042;
-      --chip-border: #3c4d63;
-      --shadow: 0 10px 40px rgba(0,0,0,0.35);
-      --radius: 18px;
-      --radius-sm: 12px;
-      --glass-blur: 10px;
-      --grid-gap: 22px;
-      --max-w: 1200px;
-      --focus: 0 0 0 3px rgba(122,224,255,0.6);
-      --star:#ffd76b;
-    }
-    @media (prefers-color-scheme: light) {
-      :root {
-        --bg-1: #f6fbff;
-        --bg-2: #e9f2ff;
-        --bg-3: #dfeafe;
-        --card: rgba(255,255,255,0.75);
-        --card-stroke: rgba(0,0,0,0.06);
-        --text: #0f1830;
-        --muted: #405479;
-        --chip:#f0f6ff;
-        --chip-border:#d4e3ff;
-        --shadow: 0 10px 36px rgba(22,55,103,0.10);
-      }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdulla's Toolkit</title>
+<style>
+body {
+font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+background-color: #f0f4f8; /* A light, clean background */
+color: #333;
+margin: 0;
+padding: 2rem;
+text-align: center;
+}
+
+
+.container {
+        max-width: 960px;
+        margin: 0 auto;
     }
 
-    /* ------------- GLOBAL ------------- */
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body{
-      margin:0;
-      color: var(--text);
-      font: 16px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 800px at 20% 10%, var(--bg-3) 0%, transparent 60%),
-        radial-gradient(1000px 700px at 90% 0%, var(--bg-2) 0%, transparent 55%),
-        radial-gradient(800px 800px at 50% 100%, var(--bg-1) 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg-1), var(--bg-2));
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button, input { font: inherit; color: inherit; }
-
-    .container{
-      width: min(100% - 32px, var(--max-w));
-      margin: 0 auto;
-      position: relative;
-      z-index: 2;
+    h1 {
+        font-size: 3rem;
+        color: #001f3f; /* Navy Blue */
+        text-shadow: 1px 1px 2px #aaa;
     }
 
-    /* ------------- DECOR ------------- */
-    .blob{
-      position: fixed;
-      filter: blur(40px);
-      opacity: 0.35;
-      z-index: 0;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      animation: float 14s ease-in-out infinite;
-    }
-    .blob.one{
-      width: 520px; height: 520px; right: -120px; top: -120px;
-      background: radial-gradient(circle at 30% 30%, #7ae0ff, transparent 60%),
-                  radial-gradient(circle at 70% 60%, #b7ffcc, transparent 55%);
-      animation-delay: 0s;
-    }
-    .blob.two{
-      width: 420px; height: 420px; left: -120px; bottom: -100px;
-      background: radial-gradient(circle at 60% 40%, #ff9cd4, transparent 60%),
-                  radial-gradient(circle at 30% 70%, #ffd76b, transparent 55%);
-      animation-delay: 4s;
-    }
-    @keyframes float {
-      0%,100% { transform: translateY(0) translateX(0) scale(1); }
-      50% { transform: translateY(-18px) translateX(10px) scale(1.04); }
+    .intro {
+        background-color: #e6f7ff; /* Light Cyan/Blue */
+        border: 2px dashed #0077c2; /* A complementary brighter blue */
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 15px;
+        text-align: left;
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
 
-    /* ------------- HEADER ------------- */
-    header{
-      padding: 40px 0 20px;
-    }
-    .hero{
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 16px;
-      align-items: start;
-    }
-    .title-wrap{
-      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      border: 1px solid var(--card-stroke);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      backdrop-filter: blur(var(--glass-blur));
-      box-shadow: var(--shadow);
-    }
-    h1{
-      margin: 0 0 8px;
-      font-size: clamp(28px, 4vw, 42px);
-      letter-spacing: 0.3px;
-      line-height: 1.1;
-    }
-    .subtitle{
-      color: var(--muted);
-      font-size: 15px;
-    }
-    .right-cta{
-      display: flex;
-      gap: 10px;
-      align-items: center;
+    .intro .ugly-button {
+        background-color: #ff5733; /* A contrasting, intentionally "ugly" color */
+        color: #fff;
+        border: 2px solid #000;
+        padding: 8px 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: default;
+        display: inline-block;
+        margin-top: 10px;
+        box-shadow: 3px 3px 0 #000;
     }
 
-    .badge{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      border: 1px dashed var(--chip-border);
-      background: color-mix(in oklab, var(--chip) 70%, transparent);
-      padding: 10px 12px;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .badge .dot{ width:10px; height:10px; border-radius:50%; background: var(--ok); box-shadow: 0 0 12px var(--ok); }
-    .btn-ugly{
-      appearance: none;
-      border: 2px solid #000;
-      background:
-        repeating-linear-gradient(-45deg, #ffd76b 0 8px, #ffbe55 8px 16px),
-        linear-gradient(#ffd76b, #ffab3c);
-      color: #222;
-      padding: 10px 14px;
-      border-radius: 10px;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-      text-transform: uppercase;
-      transform: rotate(-1.5deg);
-      box-shadow: 3px 3px 0 #000, 0 10px 24px rgba(0,0,0,0.18);
-      cursor: pointer;
-    }
-    .btn-ugly:hover{ transform: rotate(0deg) translateY(-1px); }
-    .btn-ugly:active{ transform: rotate(0.5deg) translateY(1px); }
-
-    /* ------------- CONTROLS ------------- */
-    .controls{
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 12px;
-      align-items: center;
-      margin: 18px 0 8px;
-    }
-    .search{
-      display:flex; align-items:center; gap:10px;
-      background: var(--card);
-      border: 1px solid var(--card-stroke);
-      border-radius: var(--radius);
-      padding: 10px 12px;
-      backdrop-filter: blur(var(--glass-blur));
-      box-shadow: var(--shadow);
-    }
-    .search input{
-      flex:1; border:0; background:transparent; outline: none; color: var(--text);
-    }
-    .toggle, .chip{
-      border: 1px solid var(--chip-border);
-      background: var(--chip);
-      padding: 10px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 600;
-      display: inline-flex; align-items:center; gap:8px;
-      user-select: none;
-    }
-    .toggle input{ display: none; }
-    .toggle .knob{
-      width: 22px; height: 22px; border-radius: 50%;
-      background: var(--accent); box-shadow: inset 0 0 0 2px rgba(255,255,255,0.6);
-    }
-    .toggle[aria-pressed="true"]{
-      background: color-mix(in oklab, var(--accent) 25%, var(--chip));
-      border-color: color-mix(in oklab, var(--accent) 60%, var(--chip-border));
+    .toolkit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
     }
 
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-    .chip.active{
-      background: color-mix(in oklab, var(--accent) 20%, var(--chip));
-      border-color: color-mix(in oklab, var(--accent) 60%, var(--chip-border));
+    .tool-card {
+        background-color: #ffffff;
+        border: 2px solid #d1e0e0; /* A soft, cool gray */
+        border-radius: 15px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-decoration: none;
+        color: inherit;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
-    /* ------------- GRID ------------- */
-    .grid{
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: var(--grid-gap);
-      margin-top: 14px;
-    }
-    .card{
-      grid-column: span 6;
-      background: var(--card);
-      border: 1px solid var(--card-stroke);
-      border-radius: var(--radius);
-      overflow: clip;
-      backdrop-filter: blur(var(--glass-blur));
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 120px 1fr;
-      min-height: 140px;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
-    }
-    .card:hover{ transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.35); border-color: color-mix(in oklab, var(--accent) 50%, var(--card-stroke)); }
-    .art{
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
-      border-right: 1px solid var(--card-stroke);
-      display:flex; align-items:center; justify-content:center;
-      position: relative;
-    }
-    .art svg{ width: 80%; height: 80%; }
-    .content{ padding: 14px 14px 14px 16px; display:flex; flex-direction:column; gap:10px; }
-    .title-row{ display:flex; align-items:center; gap:10px; justify-content: space-between; }
-    .title-row h3{ margin:0; font-size: 20px; line-height:1.2; letter-spacing: .2px; }
-    .meta{ display:flex; flex-wrap:wrap; gap:8px; }
-    .pill{
-      font-size: 12px; padding: 6px 10px; border-radius: 999px;
-      background: color-mix(in oklab, var(--accent) 12%, transparent);
-      border: 1px solid color-mix(in oklab, var(--accent) 45%, var(--card-stroke));
-      color: color-mix(in oklab, var(--text) 80%, var(--muted));
-      display:inline-flex; align-items:center; gap:6px;
-    }
-    .desc{ color: var(--muted); margin: 2px 0 8px; }
-    .actions{ display:flex; gap:8px; align-items:center; }
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      border:1px solid var(--chip-border); background: var(--chip);
-      padding: 10px 12px; border-radius: 12px; font-weight:700; cursor:pointer;
-    }
-    .btn.primary{
-      background: linear-gradient(180deg, color-mix(in oklab, var(--accent) 28%, transparent), transparent);
-      border-color: color-mix(in oklab, var(--accent) 55%, var(--chip-border));
-    }
-    .star{
-      border: 1px solid var(--chip-border);
-      background: var(--chip);
-      width: 40px; height: 40px; border-radius: 10px; cursor: pointer;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .star svg{ width:20px; height:20px; }
-    .star.active{ background: #2d2a00; border-color: #5b4800; }
-    .star.active svg path{ fill: var(--star); stroke: #e3b941; }
-
-    /* ------------- FOOTER ------------- */
-    footer{
-      margin: 28px 0 60px;
-      color: var(--muted);
-      display:flex; align-items:center; justify-content:space-between; gap:12px;
-    }
-    .hint{ font-size: 13px; }
-
-    /* ------------- RESPONSIVE ------------- */
-    @media (max-width: 980px){
-      .card{ grid-column: span 12; grid-template-columns: 100px 1fr; }
-      .controls{ grid-template-columns: 1fr; }
-      .hero{ grid-template-columns: 1fr; }
-      .right-cta{ justify-content: space-between; }
+    .tool-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 24px rgba(0, 31, 63, 0.15); /* Shadow using Navy Blue */
+        border-color: #0077c2;
     }
 
-    /* ------------- ACCESSIBILITY ------------- */
-    :focus-visible{ outline: none; box-shadow: var(--focus); border-radius: 10px; }
-    .sr-only{ position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
-  </style>
+    .tool-card h2 {
+        font-size: 1.5rem;
+        color: #001f3f; /* Navy Blue */
+        margin-top: 0;
+    }
+
+    .tool-card p {
+        flex-grow: 1;
+    }
+
+</style>
 </head>
 <body>
-  <!-- Animated background blobs -->
-  <div class="blob one"></div>
-  <div class="blob two"></div>
 
-  <div class="container">
-    <header>
-      <div class="hero" role="banner">
-        <div class="title-wrap">
-          <h1>Abdulla’s Toolkit</h1>
-          <p class="subtitle">
-            A playful collection of local-first tools curated for <strong>Abdulla AL‑SHAER</strong> — no databases, no cloud saves; it means you need to save everything yourself, every single time (for now).
-            Your data lives with you. When you need to share or move things, use the delightfully
-            <em><strong>UGLY</strong> Export to JSON</em> buttons in the apps. We kept it ugly on purpose. 😄
-          </p>
-        </div>
-        <div class="right-cta" aria-label="Status and actions">
-          <div class="badge" title="Local-first: nothing is stored on a server">
-            <span class="dot" aria-hidden="true"></span>
-            Local-only • No DBs
-          </div>
-          <button class="btn-ugly" id="exportJsonBtn" aria-label="Ugly Export to JSON">
-            UGLY Export to JSON
-          </button>
-        </div>
-      </div>
 
-      <div class="controls" aria-label="Filters">
-        <label class="search" for="search">
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 0 0 1.57-4.23C15.99 6.01 13.48 3.5 10.5 3.5S5.01 6.01 5.01 9s2.51 5.5 5.49 5.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0s.41-1.08 0-1.49L15.5 14zm-5 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/></svg>
-          <input id="search" type="search" placeholder="Search tools, tags, descriptions…" autocomplete="off" />
-        </label>
-        <button class="toggle" id="aiOnly" aria-pressed="false" aria-label="Filter AI tools only">
-          <span class="knob" aria-hidden="true"></span> AI tools only
-        </button>
-        <button class="toggle" id="themeToggle" aria-pressed="false" aria-label="Toggle dark mode">
-          <span class="knob" aria-hidden="true"></span> Light/Dark
-        </button>
-      </div>
-      <div class="chips" id="chips" aria-label="Tag filter chips"></div>
-    </header>
+<div class="container">
+    <h1>Abdulla's Toolkit</h1>
 
-    <main>
-      <div class="grid" id="grid" aria-live="polite"></div>
-    </main>
+    <div class="intro">
+        <p>A playful collection of local-first tools curated for Abdulla AL‑SHAER — no databases, no cloud saves; it means you need to save everything yourself, every single time (for now). Your data lives with you. When you need to share or move things, use the delightfully <span class="ugly-button">UGLY Export to JSON</span> buttons in the apps. We kept it ugly on purpose. 😄</p>
+    </div>
 
-    <footer>
-      <div class="hint">
-        Pro‑tip: ⭐ favorite the tools you use daily. Favorites & settings are kept locally (no database).
-      </div>
-      <div class="hint">
-        Need edits or a different vibe? I can swap palettes, layouts, or add new tools in seconds.
-      </div>
-    </footer>
-  </div>
+    <div class="toolkit-grid">
+        <a href="https://frostyqatar.github.io/workplan-visualizer/" class="tool-card" target="_blank">
+            <div>
+                <h2>Workplan Visualizer</h2>
+                <p>This is an automated AI workplan visualizer to create a quick snapshot of workplans through simple text. It connects with Gemini flash and an API key is needed.</p>
+            </div>
+        </a>
 
-  <!-- ------------- INLINE TEMPLATES (SVG ICONS) ------------- -->
-  <template id="icon-ai">
-    <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#7ae0ff"/>
-          <stop offset="1" stop-color="#b7ffcc"/>
-        </linearGradient>
-      </defs>
-      <rect x="28" y="28" width="200" height="200" rx="24" fill="url(#g1)" opacity="0.25"/>
-      <path d="M128 40c-8 20-24 32-48 36 0 44 24 68 48 76 24-8 48-32 48-76-24-4-40-16-48-36Z" stroke="url(#g1)" stroke-width="10" fill="none"/>
-      <circle cx="128" cy="128" r="14" fill="url(#g1)"/>
-      <path d="M60 160c18 22 42 36 68 36s50-14 68-36" stroke="url(#g1)" stroke-width="10" stroke-linecap="round"/>
-    </svg>
-  </template>
+        <a href="https://frostyqatar.github.io/process_mapper/" class="tool-card" target="_blank">
+            <div>
+                <h2>Process Mapper</h2>
+                <p>This is a process tree mapper to model the processes related to each other and find the complex relationships.</p>
+            </div>
+        </a>
 
-  <template id="icon-process">
-    <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#ffd76b"/>
-          <stop offset="1" stop-color="#ff9cd4"/>
-        </linearGradient>
-      </defs>
-      <rect x="20" y="20" width="216" height="216" rx="28" fill="url(#g2)" opacity="0.18"/>
-      <rect x="44" y="56" width="62" height="34" rx="8" stroke="url(#g2)" stroke-width="8"/>
-      <rect x="150" y="56" width="62" height="34" rx="8" stroke="url(#g2)" stroke-width="8"/>
-      <rect x="44" y="166" width="62" height="34" rx="8" stroke="url(#g2)" stroke-width="8"/>
-      <rect x="150" y="166" width="62" height="34" rx="8" stroke="url(#g2)" stroke-width="8"/>
-      <rect x="98" y="108" width="60" height="40" rx="10" stroke="url(#g2)" stroke-width="8"/>
-      <path d="M75 90v18m106-18v18M128 148v18" stroke="url(#g2)" stroke-width="8" stroke-linecap="round"/>
-      <path d="M98 128h-20m100 0h-20" stroke="url(#g2)" stroke-width="8" stroke-linecap="round"/>
-    </svg>
-  </template>
+        <a href="https://frostyqatar.github.io/note_taker/" class="tool-card" target="_blank">
+            <div>
+                <h2>Note Taker</h2>
+                <p>This is a beautiful and simple note-taking tool which is project-based.</p>
+            </div>
+        </a>
 
-  <template id="icon-notes">
-    <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#7ae0ff"/>
-          <stop offset="1" stop-color="#ffd76b"/>
-        </linearGradient>
-      </defs>
-      <rect x="32" y="28" width="192" height="200" rx="20" stroke="url(#g3)" stroke-width="10" fill="none"/>
-      <rect x="60" y="56" width="136" height="24" rx="8" fill="url(#g3)" opacity="0.4"/>
-      <rect x="60" y="92" width="136" height="24" rx="8" fill="url(#g3)" opacity="0.35"/>
-      <rect x="60" y="128" width="100" height="24" rx="8" fill="url(#g3)" opacity="0.3"/>
-      <path d="M160 192l28 0 0-28" stroke="url(#g3)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M188 164l-36 36" stroke="url(#g3)" stroke-width="10" stroke-linecap="round"/>
-    </svg>
-  </template>
+        <a href="https://frostyqatar.github.io/local_requirements_board/" class="tool-card" target="_blank">
+            <div>
+                <h2>Local Requirements Board</h2>
+                <p>This is a local requirements board to collect requirements with AI support through Gemini flash where users can type to it and it will auto put the requirement cards.</p>
+            </div>
+        </a>
 
-  <template id="icon-board">
-    <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#b7ffcc"/>
-          <stop offset="1" stop-color="#7ae0ff"/>
-        </linearGradient>
-      </defs>
-      <rect x="24" y="36" width="208" height="184" rx="16" stroke="url(#g4)" stroke-width="10" fill="none"/>
-      <rect x="44" y="56" width="56" height="74" rx="8" fill="url(#g4)" opacity="0.35"/>
-      <rect x="100" y="56" width="56" height="52" rx="8" fill="url(#g4)" opacity="0.3"/>
-      <rect x="156" y="56" width="56" height="94" rx="8" fill="url(#g4)" opacity="0.35"/>
-      <rect x="44" y="130" width="56" height="52" rx="8" fill="url(#g4)" opacity="0.3"/>
-      <rect x="100" y="108" width="56" height="74" rx="8" fill="url(#g4)" opacity="0.35"/>
-    </svg>
-  </template>
-
-  <template id="icon-chatmap">
-    <svg viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <defs>
-        <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#ff9cd4"/>
-          <stop offset="1" stop-color="#7ae0ff"/>
-        </linearGradient>
-      </defs>
-      <rect x="22" y="30" width="212" height="196" rx="24" fill="url(#g5)" opacity="0.18"/>
-      <path d="M64 92a36 36 0 1 1 36 36h-8l-20 16v-16A36 36 0 0 1 64 92Z" stroke="url(#g5)" stroke-width="10" fill="none" stroke-linejoin="round"/>
-      <rect x="150" y="72" width="44" height="20" rx="10" fill="url(#g5)" opacity="0.6"/>
-      <rect x="150" y="96" width="56" height="20" rx="10" fill="url(#g5)" opacity="0.45"/>
-      <rect x="150" y="120" width="36" height="20" rx="10" fill="url(#g5)" opacity="0.35"/>
-      <path d="M94 152h68" stroke="url(#g5)" stroke-width="10" stroke-linecap="round"/>
-      <path d="M162 152v28" stroke="url(#g5)" stroke-width="10" stroke-linecap="round"/>
-      <rect x="140" y="180" width="44" height="20" rx="10" fill="url(#g5)" opacity="0.6"/>
-    </svg>
-  </template>
-
-  <!-- ------------- SCRIPT ------------- -->
-  <script>
-    // ------------- DATA -------------
-    const TOOLS = [
-      {
-        id: "workplan-visualizer",
-        name: "Workplan Visualizer",
-        url: "https://frostyqatar.github.io/workplan-visualizer/",
-        description: "Automated AI workplan visualizer to create quick snapshot workplans from simple text. Connects with Gemini Flash (API key required).",
-        tags: ["AI","Gemini Flash","API Key","Planning","Visualization","Local"],
-        icon: "ai"
-      },
-      {
-        id: "process-mapper",
-        name: "Process Tree Mapper",
-        url: "https://frostyqatar.github.io/process_mapper/",
-        description: "Model processes and their relationships to uncover complex trees and dependencies.",
-        tags: ["Process","Mapping","Tree","Analysis","Local"],
-        icon: "process"
-      },
-      {
-        id: "note-taker",
-        name: "Project Note Taker",
-        url: "https://frostyqatar.github.io/note_taker/",
-        description: "Beautiful, simple, project-based notes. Clean structure without the clutter.",
-        tags: ["Notes","Projects","Local","Productivity"],
-        icon: "notes"
-      },
-      {
-        id: "requirements-board",
-        name: "Local Requirements Board",
-        url: "https://frostyqatar.github.io/local_requirements_board/",
-        description: "Capture requirements locally with a sprinkle of AI via Gemini Flash — type and it auto-creates requirement cards.",
-        tags: ["Requirements","Board","AI","Gemini Flash","Local","Productivity"],
-        icon: "board"
-      },
-      {
-        id: "intelliprocess",
-        name: "IntelliProcess (AI Mapper)",
-        url: "https://frostyqatar.github.io/intelliprocess/",
-        description: "Describe a process in chat and get an auto-mapped model. Powered by Gemini Flash.",
-        tags: ["Process","AI","Chatbot","Gemini Flash","Mapping","Local"],
-        icon: "chatmap"
-      }
-    ];
-
-    // ------------- STATE -------------
-    const state = {
-      query: "",
-      aiOnly: false,
-      activeTags: new Set(),
-      favorites: new Set(JSON.parse(localStorage.getItem("ab_toolkit_favs") || "[]")),
-      theme: localStorage.getItem("ab_toolkit_theme") || "auto" // auto|light|dark (we just toggle class)
-    };
-
-    // ------------- HELPERS -------------
-    const $ = sel => document.querySelector(sel);
-    const $$ = sel => Array.from(document.querySelectorAll(sel));
-
-    function setTheme(mode){
-      // mode: light|dark|auto (we'll toggle a data attribute on html)
-      if(mode === "auto"){
-        document.documentElement.removeAttribute("data-theme");
-      } else {
-        document.documentElement.setAttribute("data-theme", mode);
-      }
-      state.theme = mode;
-      localStorage.setItem("ab_toolkit_theme", mode);
-    }
-
-    // ------------- RENDER CHIPS -------------
-    function renderChips(){
-      const chipsEl = $("#chips");
-      chipsEl.innerHTML = "";
-      const allTags = [...new Set(TOOLS.flatMap(t => t.tags))].sort((a,b)=>a.localeCompare(b));
-      // Prepend a reset chip
-      const reset = document.createElement("button");
-      reset.className = "chip";
-      reset.textContent = "Clear tags";
-      reset.title = "Clear all tag filters";
-      reset.addEventListener("click", ()=>{ state.activeTags.clear(); update(); });
-      chipsEl.appendChild(reset);
-      // Make chips
-      for(const tag of allTags){
-        const chip = document.createElement("button");
-        chip.className = "chip";
-        chip.textContent = tag;
-        chip.setAttribute("data-tag", tag);
-        chip.addEventListener("click", ()=>{
-          if(state.activeTags.has(tag)) state.activeTags.delete(tag);
-          else state.activeTags.add(tag);
-          update();
-        });
-        chipsEl.appendChild(chip);
-      }
-    }
-
-    // ------------- FILTER LOGIC -------------
-    function filterTools(){
-      const q = state.query.trim().toLowerCase();
-      return TOOLS.filter(t=>{
-        if(state.aiOnly && !t.tags.includes("AI")) return false;
-        if(state.activeTags.size){
-          for(const tag of state.activeTags){
-            if(!t.tags.includes(tag)) return false;
-          }
-        }
-        if(q){
-          const hay = (t.name + " " + t.description + " " + t.tags.join(" ")).toLowerCase();
-          if(!hay.includes(q)) return false;
-        }
-        return true;
-      });
-    }
-
-    // ------------- ICON FACTORY -------------
-    function getIconTemplate(key){
-      const map = {
-        ai: "#icon-ai",
-        process: "#icon-process",
-        notes: "#icon-notes",
-        board: "#icon-board",
-        chatmap: "#icon-chatmap"
-      };
-      const tpl = document.querySelector(map[key] || "#icon-ai");
-      return tpl.content.cloneNode(true);
-    }
-
-    // ------------- CARD RENDER -------------
-    function renderCards(list){
-      const grid = $("#grid");
-      grid.innerHTML = "";
-      if(list.length === 0){
-        const empty = document.createElement("div");
-        empty.style.gridColumn = "1 / -1";
-        empty.className = "title-wrap";
-        empty.innerHTML = `<strong>No matches.</strong> Try clearing filters or searching a different term.`;
-        grid.appendChild(empty);
-        return;
-      }
-      for(const t of list){
-        const card = document.createElement("article");
-        card.className = "card";
-        card.setAttribute("tabindex","0");
-        card.setAttribute("aria-label", `${t.name}. ${t.description}`);
-
-        const art = document.createElement("div");
-        art.className = "art";
-        art.appendChild(getIconTemplate(t.icon));
-
-        const content = document.createElement("div");
-        content.className = "content";
-
-        const titleRow = document.createElement("div");
-        titleRow.className = "title-row";
-
-        const title = document.createElement("h3");
-        title.textContent = t.name;
-
-        const star = document.createElement("button");
-        star.className = "star";
-        star.setAttribute("title", "Toggle favorite");
-        star.setAttribute("aria-pressed", state.favorites.has(t.id) ? "true" : "false");
-        star.innerHTML = `
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 2l3.09 6.26 6.91 1-5 4.86L18.18 22 12 18.77 5.82 22 7 14.12l-5-4.86 6.91-1L12 2Z"
-                  stroke="#c7b06b" stroke-width="1.2" fill="transparent"/>
-          </svg>`;
-        if(state.favorites.has(t.id)) star.classList.add("active");
-
-        titleRow.append(title, star);
-
-        const meta = document.createElement("div");
-        meta.className = "meta";
-        for(const tag of t.tags){
-          const m = document.createElement("span");
-          m.className = "pill";
-          m.textContent = tag;
-          // Little glyphs for some tags
-          if(tag === "AI" || tag === "Gemini Flash" || tag === "API Key"){
-            const dot = document.createElement("span");
-            dot.style.width="8px"; dot.style.height="8px"; dot.style.borderRadius="50%";
-            dot.style.background = tag === "API Key" ? "var(--danger)" : "var(--ok)";
-            dot.style.boxShadow = `0 0 8px ${tag === "API Key" ? "var(--danger)":"var(--ok)"}`;
-            dot.setAttribute("aria-hidden","true");
-            m.prepend(dot);
-          }
-          meta.appendChild(m);
-        }
-
-        const desc = document.createElement("p");
-        desc.className = "desc";
-        desc.textContent = t.description;
-
-        const actions = document.createElement("div");
-        actions.className = "actions";
-
-        const open = document.createElement("a");
-        open.href = t.url;
-        open.target = "_blank";
-        open.rel = "noopener noreferrer";
-        open.className = "btn primary";
-        open.innerHTML = `Open Tool
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42L17.59 5H14z"/>
-            <path fill="currentColor" d="M5 5h5v2H7v10h10v-3h2v5H5z"/>
-          </svg>`;
-
-        const copy = document.createElement("button");
-        copy.className = "btn";
-        copy.innerHTML = `Copy Link
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm6.1 1h4v-2h-4v2Zm5-6h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"/>
-          </svg>`;
-        copy.addEventListener("click", async ()=>{
-          await navigator.clipboard.writeText(t.url);
-          copy.textContent = "Copied!";
-          setTimeout(()=>{ copy.innerHTML = `Copy Link
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M3.9 12a5 5 0 0 1 5-5h3v2h-3a3 3 0 0 0 0 6h3v2h-3a5 5 0 0 1-5-5Zm6.1 1h4v-2h-4v2Zm5-6h3a5 5 0 0 1 0 10h-3v-2h3a3 3 0 0 0 0-6h-3V7Z"/>
-            </svg>`; }, 1000);
-        });
-
-        actions.append(open, copy);
-
-        content.append(titleRow, meta, desc, actions);
-        card.append(art, content);
-        grid.appendChild(card);
-
-        // Star events
-        star.addEventListener("click", ()=>{
-          if(state.favorites.has(t.id)) state.favorites.delete(t.id);
-          else state.favorites.add(t.id);
-          localStorage.setItem("ab_toolkit_favs", JSON.stringify([...state.favorites]));
-          update();
-        });
-      }
-    }
-
-    // ------------- UPDATE UI -------------
-    function update(){
-      // Chips active state
-      $$("#chips .chip[data-tag]").forEach(ch=>{
-        const tag = ch.getAttribute("data-tag");
-        ch.classList.toggle("active", state.activeTags.has(tag));
-      });
-      // AI toggle state
-      $("#aiOnly").setAttribute("aria-pressed", String(state.aiOnly));
-      // Render
-      renderCards(filterTools());
-    }
-
-    // ------------- EXPORT (UGLY) -------------
-    function uglyExport(){
-      // Capture a snapshot of the local state & tools
-      const data = {
-        exportedAt: new Date().toISOString(),
-        note: "Local-only snapshot of Abdulla’s Toolkit. No databases were harmed in making this file.",
-        filters: {
-          query: state.query,
-          aiOnly: state.aiOnly,
-          activeTags: [...state.activeTags]
-        },
-        favorites: [...state.favorites],
-        tools: TOOLS
-      };
-      const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "abdullas-toolkit.json";
-      document.body.appendChild(a);
-      a.click();
-      requestAnimationFrame(()=> {
-        URL.revokeObjectURL(url);
-        a.remove();
-      });
-    }
-
-    // ------------- INIT -------------
-    function init(){
-      renderChips();
-      update();
-
-      // Search
-      $("#search").addEventListener("input", (e)=>{
-        state.query = e.target.value;
-        update();
-      });
-
-      // AI only
-      $("#aiOnly").addEventListener("click", ()=>{
-        state.aiOnly = !state.aiOnly;
-        update();
-      });
-
-      // Theme toggle: cycles auto -> dark -> light -> auto
-      const themeBtn = $("#themeToggle");
-      function cycleTheme(){
-        const order = ["auto","dark","light"];
-        const idx = order.indexOf(state.theme);
-        const next = order[(idx+1) % order.length];
-        setTheme(next);
-        themeBtn.setAttribute("aria-pressed", next !== "auto");
-        themeBtn.lastChild.nodeValue = " " + (next === "auto" ? "Light/Dark" : (next.charAt(0).toUpperCase()+next.slice(1)));
-      }
-      themeBtn.addEventListener("click", cycleTheme);
-      setTheme(state.theme);
-      themeBtn.setAttribute("aria-pressed", state.theme !== "auto");
-      themeBtn.lastChild.nodeValue = " " + (state.theme === "auto" ? "Light/Dark" : (state.theme.charAt(0).toUpperCase()+state.theme.slice(1)));
-
-      // Export
-      $("#exportJsonBtn").addEventListener("click", uglyExport);
-
-      // Keyboard: Enter on card opens tool
-      $("#grid").addEventListener("keydown", (e)=>{
-        if(e.key === "Enter"){
-          const card = e.target.closest(".card");
-          if(card){
-            const name = card.querySelector("h3")?.textContent;
-            const tool = TOOLS.find(t => t.name === name);
-            if(tool){
-              window.open(tool.url, "_blank","noopener");
-            }
-          }
-        }
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", init);
-  </script>
+        <a href="https://frostyqatar.github.io/intelliprocess/" class="tool-card" target="_blank">
+            <div>
+                <h2>IntelliProcess</h2>
+                <p>This is an automated process mapper through AI and works with Gemini flash also through a chatbot. The user describes the process and it auto-maps it.</p>
+            </div>
+        </a>
+    </div>
+</div>
 </body>
 </html>
